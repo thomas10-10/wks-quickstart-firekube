@@ -165,9 +165,7 @@ git push "${git_remote}" HEAD
 
 log "Installing Kubernetes cluster"
 apply_args=(
-#  "--git-url=$(git_http_url "$(git_remote_fetchurl "${git_remote}")")"
-  #"--git-url=$(gi "$(git_remote_fetchurl "${git_remote}")")"
-  "--git-url=git@github.com:thomas10-10/wks-quickstart-firekube.git"
+  "--git-url=$(git_http_url "$(git_remote_fetchurl "${git_remote}")")"
   "--git-branch=$(git_current_branch)"
 )
 [ "${git_deploy_key}" ] && apply_args+=("${git_deploy_key}")
