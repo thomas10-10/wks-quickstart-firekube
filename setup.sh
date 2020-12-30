@@ -160,12 +160,14 @@ log "Pushing initial cluster configuration"
 git add config.yaml footloose.yaml machines.yaml flux.yaml wks-controller.yaml
 
 git diff-index --quiet HEAD || git commit -m "Initial cluster configuration"
-#git push "${git_remote}" HEAD
-git push  git@github.com-thomas10-10-wks-quickstart-firekube:thomas10-10/wks-quickstart-firekube.git  HEAD
+git push "${git_remote}" HEAD
+#git push  git@github.com-thomas10-10-wks-quickstart-firekube:thomas10-10/wks-quickstart-firekube.git  HEAD
 
 log "Installing Kubernetes cluster"
 apply_args=(
-  "--git-url=$(git_http_url "$(git_remote_fetchurl "${git_remote}")")"
+#  "--git-url=$(git_http_url "$(git_remote_fetchurl "${git_remote}")")"
+  #"--git-url=$(gi "$(git_remote_fetchurl "${git_remote}")")"
+  "--git-url=git@github.com:thomas10-10/wks-quickstart-firekube.git"
   "--git-branch=$(git_current_branch)"
 )
 [ "${git_deploy_key}" ] && apply_args+=("${git_deploy_key}")
